@@ -1,0 +1,7 @@
+@use "./dependencies/variables" as *;
+@use "./dependencies/reset" as *;
+
+
+// components
+@use "./components/Card" as *;
+@use "./components/Pagination" as *

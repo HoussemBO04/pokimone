@@ -1,0 +1,81 @@
+.te-Card {
+    width: 100%;
+    max-width: 16rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    // padding: 1rem;
+    min-height: 10rem;
+
+    &--large {
+        max-width: 48rem;
+    }
+
+    &-title {
+        font-size: 1.5rem;
+        text-align: center;
+        padding: 1rem;
+        background-color: var(--color-primary);
+        color: var(--background-primary);
+        position: relative;
+        padding-inline: 2rem;
+    }
+
+    &-return {
+        position: absolute;
+        top: 50%;
+        left: 1rem;
+        transform: translateY(-50%);
+        font-size: 1rem;
+        text-decoration: none;
+        color: var(--color-background);
+        z-index: 1;
+    }
+
+    &-content {
+        padding: 1rem;
+
+        &--listing {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+
+            a {
+                &:hover {
+                    color: var(--color-primary);
+                    font-weight: 700;
+
+                    * {
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+
+        img {
+            margin-inline: auto;
+            display: block;
+        }
+
+        p {
+            display: flex;
+            align-items: center;
+            margin-block-end: 1rem;
+
+            span {
+                width: 60%;
+            }
+
+            span:last-of-type {
+                width: 40%;
+                text-align: center;
+            }
+        }
+    }
+
+    h2 {
+        font-size: 1.125rem;
+        font-weight: 400;
+    }
+}

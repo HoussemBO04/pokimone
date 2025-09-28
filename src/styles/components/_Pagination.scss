@@ -1,0 +1,35 @@
+.te-Pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+
+    &-button {
+        padding: 0.5rem 1rem;
+        background-color: #f2f2f2;
+        border-radius: 0.4rem;
+        text-decoration: none;
+        color: #333;
+        font-weight: 600;
+        transition: background-color 0.2s;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background-color: #e0e0e0;
+        }
+
+        &--active {
+            background-color: var(--color-primary);
+            color: #fff;
+            pointer-events: none;
+        }
+
+        &--prev,
+        &--next {
+            font-weight: 700;
+        }
+    }
+}
