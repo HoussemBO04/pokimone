@@ -1,15 +1,32 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { pokemonApi } from "./api/pokemonApi";
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-export const store = configureStore({
-  reducer: {
-    [pokemonApi.reducerPath]: pokemonApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(pokemonApi.middleware),
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: [pokemonApi.reducerPath],
+};
+
+import { combineReducers } from "@reduxjs/toolkit";
+
+const rootReducer = combineReducers({
+  [pokemonApi.reducerPath]: pokemonApi.reducer,
 });
 
-setupListeners(store.dispatch);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export default store;
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
+      },
+    }).concat(pokemonApi.middleware),
+});
+
+export const persistor = persistStore(store);
+setupListeners(store.dispatch);
